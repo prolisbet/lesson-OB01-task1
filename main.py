@@ -19,10 +19,12 @@ class Task ():
         if not self.status:
             self.status = True
             print('Задача отмечена выполненной.')
+            print()
             task_list.remove(self)
-        if self.status:
+        else:
             self.status = False
             print('Задача отмечена не выполненной.')
+            print()
             task_list.append(self)
 
     def info(self):
@@ -32,16 +34,37 @@ class Task ():
             print('Задача не выполнена.')
         else:
             print('Задача выполнена.')
+        print()
 
 
-def add_task(new_task, description, deadline, status):
+def add_task(description, deadline, status):
     new_task = Task(description, deadline, status)
     task_list.append(new_task)
     print(f'Вы добавили новую задачу: {description}.')
     print(f'Срок выполнения: {deadline}.')
     print('Задача не выполнена.')
+    print()
+    return new_task
 
 
 def make_list():
     for i, task in enumerate(task_list):
         print(i + 1, task.description)
+    print()
+
+
+task1 = add_task('разработать эскиз фасада', 'до пятницы', False)
+task2 = add_task('поправить планировку', 'до вечера', False)
+task3 = add_task('съездить на встречу', 'в среду в 13:00', False)
+task4 = add_task('убраться в квартире', 'в субботу', False)
+task5 = add_task('нагнать учебу', 'до конца каникул', False)
+
+make_list()
+
+task2.info()
+
+task2.change_status()
+
+task2.info()
+
+make_list()
